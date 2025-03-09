@@ -4,9 +4,22 @@
 
 # doFuture.tests.extra: Extra Test Sets for the 'doFuture' Package 
 
+This package is used to run the examples of packages that use
+**foreach** and `%dopar%` for parallelization, while using the
+**doFuture** backend. , This provides additional mechanisms for
+testing any available **future** backend in "real-world" scenarios.
+Specifically, we rely on the examples of packages **BiocParallel**,
+**caret**, **doParallel**, ***glmnet**, **NMF**, **plyr**, and **TSP**
+to run these real-world tests.  Technically, this is achieved by this
+package injecting `doFuture::registerDoFuture()` into these examples
+at runtime.
+
+
 ## Installation
 
-R package doFuture.tests.extra is only available via [GitHub](https://github.com/futureverse/doFuture.tests.extra) and can be installed in R as:
+R package **doFuture.tests.extra** is only available via
+[GitHub](https://github.com/futureverse/doFuture.tests.extra) and can
+be installed in R as:
 
 ```r
 remotes::install_github("futureverse/doFuture.tests.extra", ref="main")
@@ -15,7 +28,8 @@ remotes::install_github("futureverse/doFuture.tests.extra", ref="main")
 
 ### Pre-release version
 
-To install the pre-release version that is available in Git branch `develop` on GitHub, use:
+To install the pre-release version that is available in Git branch
+`develop` on GitHub, use:
 
 ```r
 remotes::install_github("futureverse/doFuture.tests.extra", ref="develop")
