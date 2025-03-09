@@ -13,7 +13,7 @@ run_examples(package, topics = test_topics(package), strategy, ...)
 
 \item{strategy}{A future strategy passed to \code{\link[future:plan]{future::plan()}}.}
 
-\item{\dots}{Additional arguments passed to \code{\link[=run_example]{run_example()}}.}
+\item{\ldots}{Additional arguments passed to \code{\link[=run_example]{run_example()}}.}
 }
 \value{
 Invisibly, returns the processing time.

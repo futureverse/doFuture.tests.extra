@@ -87,7 +87,7 @@ run_example <- function(topic, package, local = FALSE, run.dontrun = TRUE, envir
 #'
 #' @param strategy A future strategy passed to [future::plan()].
 #'
-#' @param \dots Additional arguments passed to [run_example()].
+#' @param \ldots Additional arguments passed to [run_example()].
 #'
 #' @return
 #' Invisibly, returns the processing time.
