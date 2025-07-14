@@ -9,7 +9,7 @@ if (require(BiocParallel)) {
     message(sprintf("- plan('%s') ...", strategy))
     plan(strategy)
 
-    for (flavor in c("%dopar%", "%dofuture%")) {
+    for (flavor in supportedFlavors()) {
       message(sprintf("- registerDoFuture('%s') ...", flavor))
       doFuture::registerDoFuture(flavor)
   

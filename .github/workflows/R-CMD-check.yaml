@@ -23,7 +23,8 @@ jobs:
           - {os: macOS-latest,   r: 'release'  }
 #          - {os: macOS-latest,   r: 'oldrel'   }
 #          - {os: ubuntu-latest,  r: 'devel'    }
-          - {os: ubuntu-latest,  r: 'release', testsets: caret }
+          - {os: ubuntu-latest,  r: 'release', testsets: caret, flavors: '%dopar%' }
+          - {os: ubuntu-latest,  r: 'release', testsets: caret, flavors: '%dofuture%' }
           - {os: ubuntu-latest,  r: 'release', testsets: foreach }
           - {os: ubuntu-latest,  r: 'release', testsets: glmnet }
           - {os: ubuntu-latest,  r: 'release', testsets: plyr }
@@ -44,6 +45,7 @@ jobs:
 #      R_FUTURE_RNG_ONMISUSE: error
       ## Specific to this package
       _R_CHECK_TESTSETS_: ${{ matrix.config.testsets }}
+      _R_DOFUTURE_TESTS_EXTRA_FLAVORS_: ${{ matrix.config.flavors }}
 
     steps:
       - uses: actions/checkout@v4

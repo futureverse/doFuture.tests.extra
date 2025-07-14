@@ -19,7 +19,7 @@ if (require(NMF)) {
     ## by a package of the same name, which is not always the case, e.g.
     ## the adapter name for %dofuture% is 'doFuture2'.
     ## https://github.com/renozao/NMF/issues/195
-    for (flavor in c("%dopar%", "%dofuture%")[1]) {
+    for (flavor in supportedFlavors(exclude = "%dofuture%")) {
       message(sprintf("- registerDoFuture('%s') ...", flavor))
       doFuture::registerDoFuture(flavor)
 

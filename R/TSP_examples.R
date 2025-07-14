@@ -1,7 +1,9 @@
 #' Run All Examples of the 'TSP' Package via Futureverse
 #'
+#' @inheritParams doFuture::registerDoFuture
+#'
 #' @export
-TSP_examples <- function() {
+TSP_examples <- function(flavor = NULL) {
   pkg <- "TSP"
   require(pkg, character.only=TRUE) || stop("Package not installed: ", sQuote(pkg))
   oopts <- options(warnPartialMatchArgs = FALSE, warn = 1L,
@@ -22,7 +24,7 @@ TSP_examples <- function() {
       run.dontrun <- !is.element(topic, c("Concorde", "solve_TSP"))
       
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ...", ii, length(topics), topic, pkg, run.dontrun, strategy) #nolint
-      registerDoFuture()
+      registerDoFuture(flavor)
       plan(strategy)
       dt <- run_example(topic = topic, package = pkg, run.dontrun = run.dontrun)
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ... DONE (%s)", ii, length(topics), topic, pkg, run.dontrun, strategy, dt) #nolint

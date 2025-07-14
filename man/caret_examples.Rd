@@ -4,10 +4,15 @@
 \alias{caret_examples}
 \title{Run All Examples of the 'caret' Package via Futureverse}
 \usage{
-caret_examples(exclude = NULL)
+caret_examples(exclude = NULL, flavor = NULL)
 }
 \arguments{
 \item{exclude}{(optional) A character vector of Rd topics to exclude.}
+
+\item{flavor}{Control how the adapter should behave.
+If \code{"\%dopar\%"}, it behaves as a classical foreach adapter.
+If \code{"\%dofuture\%"}, it behaves as if \code{\link[doFuture]{\%dofuture\%}} would have
+been used instead of \verb{\%dopar\%}.}
 }
 \description{
 Run All Examples of the 'caret' Package via Futureverse

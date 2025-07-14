@@ -11,7 +11,7 @@ if (require(future.batchtools)) {
     message(sprintf("- plan('%s') ...", strategy))
     plan(strategy)
 
-    for (flavor in c("%dopar%", "%dofuture%")[1]) {
+    for (flavor in supportedFlavors()) {
       message(sprintf("- registerDoFuture('%s') ...", flavor))
       doFuture::registerDoFuture(flavor)
 

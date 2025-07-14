@@ -4,7 +4,13 @@
 \alias{foreach_examples}
 \title{Run All Examples of the 'foreach' Package via Futureverse}
 \usage{
-foreach_examples()
+foreach_examples(flavor = NULL)
+}
+\arguments{
+\item{flavor}{Control how the adapter should behave.
+If \code{"\%dopar\%"}, it behaves as a classical foreach adapter.
+If \code{"\%dofuture\%"}, it behaves as if \code{\link[doFuture]{\%dofuture\%}} would have
+been used instead of \verb{\%dopar\%}.}
 }
 \description{
 Run All Examples of the 'foreach' Package via Futureverse
