@@ -1,6 +1,6 @@
-source("incl/start.R")
-
 if (require(plyr)) {
+  library(doFuture)
+  
   message("*** plyr w / doFuture + parallel ...")
 
   res0 <- NULL
@@ -36,5 +36,3 @@ if (require(plyr)) {
 
   message("*** plyr w / doFuture + parallel ... DONE")
 }
-
-source("incl/end.R")

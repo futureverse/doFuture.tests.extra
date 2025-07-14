@@ -1,6 +1,6 @@
-source("incl/start.R")
-
 if (require(future.callr)) {
+  library(doFuture)
+  
   message("*** doFuture + future.callr ...")
 
   res0 <- NULL
@@ -91,5 +91,3 @@ if (require(future.callr)) {
   
   message("*** doFuture + future.callr ... DONE")
 }
-
-source("incl/end.R")

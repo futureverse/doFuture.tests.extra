@@ -1,7 +1,7 @@
-source("incl/start.R")
 if (require(TSP)) {
+  library(doFuture)
+  
   if (length(testsets) == 0 || "TSP" %in% testsets) {
-    TSP_examples()
+    doFuture.tests.extra::TSP_examples()
   }
 }
-source("incl/end.R")

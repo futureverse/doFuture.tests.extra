@@ -1,6 +1,6 @@
-source("incl/start.R")
-
 if (require(BiocParallel)) {
+  library(doFuture)
+  
   message("*** BiocParallel w / doFuture + parallel ...")
   
   res0 <- NULL
@@ -48,5 +48,3 @@ if (require(BiocParallel)) {
   
   message("*** BiocParallel w / doFuture + parallel ... DONE")
 }
-
-source("incl/end.R")

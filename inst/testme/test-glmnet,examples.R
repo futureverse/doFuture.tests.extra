@@ -1,7 +1,7 @@
-source("incl/start.R")
 if (require(glmnet)) {
+  library(doFuture)
+  
   if (length(testsets) == 0 || "glmnet" %in% testsets) {
-    glmnet_examples()
+    doFuture.tests.extra::glmnet_examples()
   }
 }
-source("incl/end.R")

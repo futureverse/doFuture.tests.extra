@@ -1,6 +1,6 @@
-source("incl/start.R")
-
 if (require(future.batchtools)) {
+  library(doFuture)
+  
   message("*** doFuture + future.batchtools ...")
   
   strategies <- c("batchtools_local", "batchtools_interactive")
@@ -93,5 +93,3 @@ if (require(future.batchtools)) {
   
   message("*** doFuture + future.batchtools ... DONE")
 }
-
-source("incl/end.R")

@@ -47,7 +47,7 @@ Rplots.pdf$
 #----------------------------
 # Package specific
 #----------------------------
-[.]future
+^[.]future
 
 ^_pkgdown\.yml$
 ^docs$
