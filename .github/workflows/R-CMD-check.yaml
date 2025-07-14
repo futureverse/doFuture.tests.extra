@@ -10,7 +10,7 @@ jobs:
 
     runs-on: ${{ matrix.config.os }}
 
-    name: r-${{ matrix.config.r }} ${{ matrix.config.testsets }} (${{ matrix.config.os }})
+    name: r-${{ matrix.config.r }} ${{ matrix.config.testsets }} ${{ matrix.config.flavors }} (${{ matrix.config.os }})
 
     strategy:
       fail-fast: false
