@@ -17,8 +17,8 @@ if (require(NMF)) {
     registerDoFuture()
     plan(strategy)
 
-    ## WORKAROUND/FIXME: Test fails with future.callr::callr
-    if (inherits(plan("next"), "callr")) next
+#    ## WORKAROUND/FIXME: Test fails with future.callr::callr
+#    if (inherits(plan("next"), "callr")) next
 
     res <- nmf(esGolub, rank = 3L, method = "brunet", nrun = 2L, .opt = "p",
                seed = 0xBEEF, .pbackend = NULL)
