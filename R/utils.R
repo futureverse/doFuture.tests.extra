@@ -103,7 +103,7 @@ run_examples <- function(package, topics = test_topics(package), flavor = NULL, 
   for (ii in seq_along(topics)) {
     topic <- topics[ii]
     mprintf("- #%d of %d example('%s', package = '%s') using plan(%s) ...", ii, length(topics), topic, package, strategy) #nolint
-    registerDoFuture(flavor)
+    with(registerDoFuture(flavor), local = TRUE)
     plan(strategy)
     dt <- run_example(topic = topic, package = package, ...)
     mprintf("- #%d of %d example('%s', package = '%s') using plan(%s) ... DONE (%s)", ii, length(topics), topic, package, strategy, dt) #nolint

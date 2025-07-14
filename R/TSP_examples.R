@@ -24,7 +24,7 @@ TSP_examples <- function(flavor = NULL) {
       run.dontrun <- !is.element(topic, c("Concorde", "solve_TSP"))
       
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ...", ii, length(topics), topic, pkg, run.dontrun, strategy) #nolint
-      registerDoFuture(flavor)
+      with(registerDoFuture(flavor), local = TRUE)
       plan(strategy)
       dt <- run_example(topic = topic, package = pkg, run.dontrun = run.dontrun)
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ... DONE (%s)", ii, length(topics), topic, pkg, run.dontrun, strategy, dt) #nolint
