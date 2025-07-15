@@ -10,7 +10,7 @@ jobs:
 
     runs-on: ${{ matrix.config.os }}
 
-    name: r-${{ matrix.config.r }} ${{ matrix.config.testsets }} (${{ matrix.config.os }})
+    name: r-${{ matrix.config.r }} ${{ matrix.config.testsets }} ${{ matrix.config.flavors }} (${{ matrix.config.os }})
 
     strategy:
       fail-fast: false
@@ -23,7 +23,8 @@ jobs:
           - {os: macOS-latest,   r: 'release'  }
 #          - {os: macOS-latest,   r: 'oldrel'   }
 #          - {os: ubuntu-latest,  r: 'devel'    }
-          - {os: ubuntu-latest,  r: 'release', testsets: caret }
+          - {os: ubuntu-latest,  r: 'release', testsets: caret, flavors: '%dopar%' }
+          - {os: ubuntu-latest,  r: 'release', testsets: caret, flavors: '%dofuture%' }
           - {os: ubuntu-latest,  r: 'release', testsets: foreach }
           - {os: ubuntu-latest,  r: 'release', testsets: glmnet }
           - {os: ubuntu-latest,  r: 'release', testsets: plyr }
@@ -35,8 +36,6 @@ jobs:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       ## R CMD check
       _R_CHECK_CRAN_INCOMING_: false
-      _R_CHECK_LENGTH_1_CONDITION_: true
-      _R_CHECK_LENGTH_1_LOGIC2_: true
       _R_CHECK_MATRIX_DATA_: true
       _R_CHECK_SUGGESTS_ONLY_: true
       _R_CHECK_THINGS_IN_TEMP_DIR_: true
@@ -46,6 +45,7 @@ jobs:
 #      R_FUTURE_RNG_ONMISUSE: error
       ## Specific to this package
       _R_CHECK_TESTSETS_: ${{ matrix.config.testsets }}
+      _R_DOFUTURE_TESTS_EXTRA_FLAVORS_: ${{ matrix.config.flavors }}
 
     steps:
       - uses: actions/checkout@v4
@@ -112,7 +112,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check

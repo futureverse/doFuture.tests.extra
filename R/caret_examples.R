@@ -1,9 +1,11 @@
 #' Run All Examples of the 'caret' Package via Futureverse
 #'
+#' @inheritParams doFuture::registerDoFuture
+#'
 #' @param exclude (optional) A character vector of Rd topics to exclude.
 #'
 #' @export
-caret_examples <- function(exclude = NULL) {
+caret_examples <- function(exclude = NULL, flavor = NULL) {
   pkg <- "caret"
   require(pkg, character.only=TRUE) || stop("Package not installed: ", sQuote(pkg))
   oopts <- options(warnPartialMatchArgs = FALSE, warn = 1L,
@@ -92,7 +94,7 @@ caret_examples <- function(exclude = NULL) {
       run.dontrun <- !is.element(topic, c("calibration", excl_dontrun))
   
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ...", ii, length(topics), topic, pkg, run.dontrun, strategy) #nolint
-      registerDoFuture()
+      with(registerDoFuture(flavor), local = TRUE)
       plan(strategy)
       dt <- run_example(topic = topic, package = pkg, run.dontrun = run.dontrun, local = FALSE)
   

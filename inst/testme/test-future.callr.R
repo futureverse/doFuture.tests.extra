@@ -1,16 +1,19 @@
-source("incl/start.R")
+if (require(future.callr)) {
+  library(doFuture)
+  
+  message("*** doFuture + future.callr ...")
 
-if (require(future.batchtools)) {
-  message("*** doFuture + future.batchtools ...")
-  
-  strategies <- c("batchtools_local", "batchtools_interactive")
-  
   res0 <- NULL
   
-  for (strategy in strategies) {
-    message(sprintf("- plan('%s') ...", strategy))
-    plan(strategy)
-  
+  strategy <- "callr"
+
+  message(sprintf("- plan('%s') ...", strategy))
+  plan(strategy)
+
+  for (flavor in supportedFlavors()) {
+    message(sprintf("- registerDoFuture('%s') ...", flavor))
+    doFuture::registerDoFuture(flavor)
+    
     message("- Explicitly exporting globals ...")
     mu <- 1.0
     sigma <- 2.0
@@ -45,7 +48,7 @@ if (require(future.batchtools)) {
     message("- Implicitly exporting globals (via future) ... DONE")
   
     if (require(plyr)) {
-      message("*** dplyr w / doFuture + future.batchtools ...")
+      message("*** dplyr w / doFuture + future.callr ...")
   
       print(sessionInfo())
   
@@ -56,11 +59,11 @@ if (require(future.batchtools)) {
       print(y1)
       stopifnot(all.equal(y1, y0))
   
-      message("*** dplyr w / doFuture + future.batchtools ... DONE")
+      message("*** dplyr w / doFuture + future.callr ... DONE")
     } ## if (require(plyr))
   
     if (require(BiocParallel)) {
-      message("*** BiocParallel w / doFuture + future.batchtools ...")
+      message("*** BiocParallel w / doFuture + future.callr ...")
   
       print(sessionInfo())
   
@@ -82,16 +85,16 @@ if (require(future.batchtools)) {
       y2$a <- bplapply(1:5, sqrt, BPPARAM = p)
       y2$b <- bpvec(1:5, sqrt, BPPARAM = p)
       stopifnot(identical(y2, y0))
+
+    message("*** BiocParallel w / doFuture + future.callr ... DONE")
+  } ## if (require(BiocParallel))
+
+    message(sprintf("- registerDoFuture('%s') ... DONE", flavor))
+  } ## for (flavor in c("%dopar%", "%dofuture%"))
   
-      message("*** BiocParallel w / doFuture + future.batchtools ... DONE")
-    } ## if (require(BiocParallel))
-  
-    message(sprintf("- plan('%s') ... DONE", strategy))
-  } ## for (strategy ...)
+  message(sprintf("- plan('%s') ... DONE", strategy))
   
   print(sessionInfo())
   
-  message("*** doFuture + future.batchtools ... DONE")
+  message("*** doFuture + future.callr ... DONE")
 }
-
-source("incl/end.R")

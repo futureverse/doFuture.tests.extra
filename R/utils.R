@@ -81,13 +81,15 @@ run_example <- function(topic, package, local = FALSE, run.dontrun = TRUE, envir
 
 #' Run a package's examples for a specific future plan
 #'
+#' @inheritParams doFuture::registerDoFuture
+#'
 #' @param package A package name.
 #'
 #' @param topics One or more Rd topics.
 #'
 #' @param strategy A future strategy passed to [future::plan()].
 #'
-#' @param \dots Additional arguments passed to [run_example()].
+#' @param \ldots Additional arguments passed to [run_example()].
 #'
 #' @return
 #' Invisibly, returns the processing time.
@@ -95,13 +97,13 @@ run_example <- function(topic, package, local = FALSE, run.dontrun = TRUE, envir
 #' @importFrom doFuture registerDoFuture
 #' @importFrom future plan
 #' @export
-run_examples <- function(package, topics = test_topics(package), strategy, ...) {
+run_examples <- function(package, topics = test_topics(package), flavor = NULL, strategy, ...) {
   if (length(topics) == 0) return()
 
   for (ii in seq_along(topics)) {
     topic <- topics[ii]
     mprintf("- #%d of %d example('%s', package = '%s') using plan(%s) ...", ii, length(topics), topic, package, strategy) #nolint
-    registerDoFuture()
+    with(registerDoFuture(flavor), local = TRUE)
     plan(strategy)
     dt <- run_example(topic = topic, package = package, ...)
     mprintf("- #%d of %d example('%s', package = '%s') using plan(%s) ... DONE (%s)", ii, length(topics), topic, package, strategy, dt) #nolint

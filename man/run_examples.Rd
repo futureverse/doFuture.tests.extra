@@ -4,16 +4,27 @@
 \alias{run_examples}
 \title{Run a package's examples for a specific future plan}
 \usage{
-run_examples(package, topics = test_topics(package), strategy, ...)
+run_examples(
+  package,
+  topics = test_topics(package),
+  flavor = NULL,
+  strategy,
+  ...
+)
 }
 \arguments{
 \item{package}{A package name.}
 
 \item{topics}{One or more Rd topics.}
 
+\item{flavor}{Control how the adapter should behave.
+If \code{"\%dopar\%"}, it behaves as a classical foreach adapter.
+If \code{"\%dofuture\%"}, it behaves as if \code{\link[doFuture]{\%dofuture\%}} would have
+been used instead of \verb{\%dopar\%}.}
+
 \item{strategy}{A future strategy passed to \code{\link[future:plan]{future::plan()}}.}
 
-\item{\dots}{Additional arguments passed to \code{\link[=run_example]{run_example()}}.}
+\item{\ldots}{Additional arguments passed to \code{\link[=run_example]{run_example()}}.}
 }
 \value{
 Invisibly, returns the processing time.

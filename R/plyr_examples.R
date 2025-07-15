@@ -31,9 +31,11 @@ plyr_tweak_API <- local({
 
 #' Run All Examples of the 'plyr' Package via Futureverse
 #'
+#' @inheritParams doFuture::registerDoFuture
+#'
 #' @importFrom utils assignInNamespace getFromNamespace
 #' @export
-plyr_examples <- function() {
+plyr_examples <- function(flavor = NULL) {
   pkg <- "plyr"
   require(pkg, character.only=TRUE) || stop("Package not installed: ", sQuote(pkg))
   oopts <- options(warnPartialMatchArgs = FALSE, warn = 1L,
@@ -81,7 +83,7 @@ plyr_examples <- function() {
       run.dontrun <- !is.element(topic, excl_dontrun)
       
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ...", ii, length(topics), topic, pkg, run.dontrun, strategy) #nolint
-      registerDoFuture()
+      with(registerDoFuture(flavor), local = TRUE)
       plan(strategy)
       dt <- run_example(topic = topic, package = pkg, run.dontrun = run.dontrun, local = TRUE)
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ... DONE (%s)", ii, length(topics), topic, pkg, run.dontrun, strategy, dt) #nolint

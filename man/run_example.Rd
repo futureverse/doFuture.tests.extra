@@ -24,7 +24,7 @@ run_example(
     evaluate in the workspace.}
 
 \item{run.dontrun}{logical indicating that \verb{\\dontrun}
-    should be ignored.}
+    should be ignored, i.e., do run the enclosed code.}
 
 \item{envir}{The environment from which variables created by the
 examples should be removed at the end.}

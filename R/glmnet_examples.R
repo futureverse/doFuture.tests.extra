@@ -1,7 +1,9 @@
 #' Run All Examples of the 'glmnet' Package via Futureverse
 #'
+#' @inheritParams doFuture::registerDoFuture
+#'
 #' @export
-glmnet_examples <- function() {
+glmnet_examples <- function(flavor = NULL) {
   pkg <- "glmnet"
   require(pkg, character.only=TRUE) || stop("Package not installed: ", sQuote(pkg))
   oopts <- options(warnPartialMatchArgs = FALSE, warn = 1L,
@@ -27,7 +29,7 @@ glmnet_examples <- function() {
   
   for (strategy in test_strategies()) {
     mprintf("- plan('%s') ...", strategy)
-    run_examples(pkg, strategy = strategy, run.dontrun = TRUE)
+    run_examples(pkg, flavor = flavor, strategy = strategy, run.dontrun = TRUE)
     mprintf("- plan('%s') ... DONE", strategy)
   } ## for (strategy ...)
   
