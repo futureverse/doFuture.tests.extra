@@ -4,6 +4,10 @@
 #'
 #' @param exclude (optional) A character vector of Rd topics to exclude.
 #'
+#' @return
+#' Nothing (invisibly `NULL`); the function is called for its side effects
+#' of running the examples.
+#'
 #' @export
 caret_examples <- function(exclude = NULL, flavor = NULL) {
   pkg <- "caret"
@@ -105,4 +109,6 @@ caret_examples <- function(exclude = NULL, flavor = NULL) {
   } ## for (strategy ...)
   
   mprintf("*** doFuture() - all %s examples ... DONE", pkg)
+
+  invisible(NULL)
 }

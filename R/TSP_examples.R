@@ -2,6 +2,10 @@
 #'
 #' @inheritParams doFuture::registerDoFuture
 #'
+#' @return
+#' Nothing (invisibly `NULL`); the function is called for its side effects
+#' of running the examples.
+#'
 #' @export
 TSP_examples <- function(flavor = NULL) {
   pkg <- "TSP"
@@ -34,4 +38,6 @@ TSP_examples <- function(flavor = NULL) {
   } ## for (strategy ...)
   
   mprintf("*** doFuture() - all %s examples ... DONE", pkg)
+
+  invisible(NULL)
 }

@@ -12,6 +12,10 @@ If \code{"\%dopar\%"}, it behaves as a classical foreach adapter.
 If \code{"\%dofuture\%"}, it behaves as if \code{\link[doFuture]{\%dofuture\%}} would have
 been used instead of \verb{\%dopar\%}.}
 }
+\value{
+Nothing (invisibly \code{NULL}); the function is called for its side effects
+of running the examples.
+}
 \description{
 Run All Examples of the 'glmnet' Package via Futureverse
 }

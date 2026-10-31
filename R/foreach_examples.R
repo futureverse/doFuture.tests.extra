@@ -2,6 +2,10 @@
 #'
 #' @inheritParams doFuture::registerDoFuture
 #'
+#' @return
+#' Nothing (invisibly `NULL`); the function is called for its side effects
+#' of running the examples.
+#'
 #' @export
 foreach_examples <- function(flavor = NULL) {
   pkg <- "foreach"
@@ -19,4 +23,6 @@ foreach_examples <- function(flavor = NULL) {
   } ## for (strategy ...)
   
   mprintf("*** doFuture() - all %s examples ... DONE", pkg)
+
+  invisible(NULL)
 }

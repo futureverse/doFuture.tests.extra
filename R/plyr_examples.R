@@ -33,6 +33,10 @@ plyr_tweak_API <- local({
 #'
 #' @inheritParams doFuture::registerDoFuture
 #'
+#' @return
+#' Nothing (invisibly `NULL`); the function is called for its side effects
+#' of running the examples.
+#'
 #' @importFrom utils assignInNamespace getFromNamespace
 #' @export
 plyr_examples <- function(flavor = NULL) {
@@ -93,4 +97,6 @@ plyr_examples <- function(flavor = NULL) {
   } ## for (strategy ...)
   
   mprintf("*** doFuture() - all %s examples ... DONE", pkg)
+
+  invisible(NULL)
 }
