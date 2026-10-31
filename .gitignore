@@ -22,3 +22,4 @@ revdep/data.sqlite
 revdep/library/
 docs
 .Rdump/
+.osgrep

@@ -1,10 +1,10 @@
 Package: doFuture.tests.extra
-Version: 0.2.0-9000
+Version: 0.2.0-9001
 Title: Extra Test Sets for the 'doFuture' Package
 Depends:
     doFuture (>= 1.1.0)
 Imports:
-    future (>= 1.40.0)
+    future (>= 1.80.0)
 Suggests:
     tools,
     BiocParallel,
@@ -26,5 +26,5 @@ License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://github.com/futureverse/doFuture.tests.extra
 BugReports: https://github.com/futureverse/doFuture.tests.extra/issues
-RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.1
