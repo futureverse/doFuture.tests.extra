@@ -2,11 +2,21 @@
 
 ## Bug Fixes
 
- * `caret_examples()` would fail on `example("avNNet")` with **caret**
-   7.1-0, because that example is no longer in `\dontrun{}`. It is now
-   skipped also when `run.dontrun = FALSE`, because the example relies
-   on a conditionally assigned global that is not identified by the
-   **globals** package.
+ * `caret_examples()` failed with **caret** 7.1-0 for several reasons:
+
+   - `example("avNNet")` is no longer in `\dontrun{}`. It relies on a
+     conditionally assigned global that the **globals** package does
+     not identify, so it is now skipped also when
+     `run.dontrun = FALSE`.
+
+   - Several examples, e.g. `example("train")`, now have all code in
+     `\dontrun{}` inside `@examplesIf`, which gives "Error in
+     srcrefs[[1L]] : subscript out of bounds" when called with
+     `run.dontrun = FALSE`. These examples are now skipped.
+
+   - `example("yardstickSummary")` attaches **yardstick**, which masks
+     `caret::precision()` and other functions used by later examples.
+     **yardstick** is now detached after each example.
 
 
 # Version 0.2.0 (2025-07-15)
