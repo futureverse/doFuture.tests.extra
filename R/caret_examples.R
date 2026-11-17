@@ -52,6 +52,8 @@ caret_examples <- function(exclude = NULL, flavor = NULL) {
     ## example("avNNet", run.dontrun = TRUE) only works with a more liberal
     ## identification method for globals than 'future', e.g. 'foreach'
     ## See https://github.com/HenrikBengtsson/doFuture/issues/17
+    ## Since caret 7.1-0, the example is no longer in \dontrun{}
+    excl <- c(excl, "avNNet")
     excl_dontrun <- c(excl_dontrun, "avNNet")
   }
   

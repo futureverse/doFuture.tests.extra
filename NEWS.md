@@ -1,6 +1,12 @@
 # Version (development version)
 
- * ...
+## Bug Fixes
+
+ * `caret_examples()` would fail on `example("avNNet")` with **caret**
+   7.1-0, because that example is no longer in `\dontrun{}`. It is now
+   skipped also when `run.dontrun = FALSE`, because the example relies
+   on a conditionally assigned global that is not identified by the
+   **globals** package.
 
 
 # Version 0.2.0 (2025-07-15)
