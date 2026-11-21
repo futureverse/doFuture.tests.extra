@@ -28,13 +28,11 @@ remotes::install_github("futureverse/doFuture.tests.extra", ref="main")
 
 ### Pre-release version
 
-To install the pre-release version that is available in Git branch
-`develop` on GitHub, use:
+To install the pre-release version, use:
 
 ```r
-remotes::install_github("futureverse/doFuture.tests.extra", ref="develop")
+install.packages("doFuture.tests.extra", repos = c("https://futureverse-devel.r-universe.dev", "https://cloud.r-project.org"))
 ```
-This will install the package from source.  
 
 
 <!-- pkgdown-drop-below -->
