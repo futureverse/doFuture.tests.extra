@@ -4,6 +4,10 @@
 #'
 #' @param exclude (optional) A character vector of Rd topics to exclude.
 #'
+#' @return
+#' Nothing (invisibly `NULL`); the function is called for its side effects
+#' of running the examples.
+#'
 #' @export
 caret_examples <- function(exclude = NULL, flavor = NULL) {
   pkg <- "caret"
@@ -21,6 +25,14 @@ caret_examples <- function(exclude = NULL, flavor = NULL) {
     "prcomp.resamples",
     "diff.resamples"
   )
+
+  ## Since caret 7.1-0, these examples are all in \dontrun{} wrapped in
+  ## @examplesIf, which gives "Error in srcrefs[[1L]] : subscript out of
+  ## bounds" when run with example(..., run.dontrun = FALSE). Since we
+  ## don't use run.dontrun = TRUE for them (see 'excl_dontrun' below),
+  ## there is nothing to test
+  excl <- c(excl, "plotClassProbs", "plotObsVsPred", "rfeControl",
+                  "sbf", "plsda", "rfe", "train")
 
   if (getRversion() >= "4.2.0") {
     excl <- c(excl, "summary.bagEarth")
@@ -48,6 +60,8 @@ caret_examples <- function(exclude = NULL, flavor = NULL) {
     ## example("avNNet", run.dontrun = TRUE) only works with a more liberal
     ## identification method for globals than 'future', e.g. 'foreach'
     ## See https://github.com/HenrikBengtsson/doFuture/issues/17
+    ## Since caret 7.1-0, the example is no longer in \dontrun{}
+    excl <- c(excl, "avNNet")
     excl_dontrun <- c(excl_dontrun, "avNNet")
   }
   
@@ -97,6 +111,12 @@ caret_examples <- function(exclude = NULL, flavor = NULL) {
       with(registerDoFuture(flavor), local = TRUE)
       plan(strategy)
       dt <- run_example(topic = topic, package = pkg, run.dontrun = run.dontrun, local = FALSE)
+
+      ## example("yardstickSummary") attaches 'yardstick', which masks
+      ## caret::precision() etc. used by later examples
+      if ("package:yardstick" %in% search()) {
+        detach("package:yardstick", character.only = TRUE)
+      }
   
       mprintf("- #%d of %d example('%s', package = '%s', run.dontrun = %s) using plan(%s) ... DONE (%s)", ii, length(topics), topic, pkg, run.dontrun, strategy, dt) #nolint
     } ## for (ii ...)
@@ -105,4 +125,6 @@ caret_examples <- function(exclude = NULL, flavor = NULL) {
   } ## for (strategy ...)
   
   mprintf("*** doFuture() - all %s examples ... DONE", pkg)
+
+  invisible(NULL)
 }

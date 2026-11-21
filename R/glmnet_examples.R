@@ -2,6 +2,10 @@
 #'
 #' @inheritParams doFuture::registerDoFuture
 #'
+#' @return
+#' Nothing (invisibly `NULL`); the function is called for its side effects
+#' of running the examples.
+#'
 #' @export
 glmnet_examples <- function(flavor = NULL) {
   pkg <- "glmnet"
@@ -34,4 +38,6 @@ glmnet_examples <- function(flavor = NULL) {
   } ## for (strategy ...)
   
   mprintf("*** doFuture() - all %s examples ... DONE", pkg)
+
+  invisible(NULL)
 }

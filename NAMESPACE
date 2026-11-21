@@ -12,6 +12,8 @@ export(test_topics)
 importFrom(doFuture,registerDoFuture)
 importFrom(future,plan)
 importFrom(grDevices,graphics.off)
-importFrom(utils,assignInNamespace)
-importFrom(utils,example)
-importFrom(utils,getFromNamespace)
+importFrom(utils,
+  assignInNamespace,
+  example,
+  getFromNamespace
+)
